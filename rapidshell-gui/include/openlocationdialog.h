@@ -39,6 +39,8 @@ public:
     explicit OpenLocationDialog(QWidget *parent = 0);
     ~OpenLocationDialog();
 
+    QString location() const;
+
 private slots:
     void browse();
 

@@ -45,6 +45,11 @@ OpenLocationDialog::~OpenLocationDialog()
     delete ui;
 }
 
+QString OpenLocationDialog::location() const
+{
+    return ui->comboLocation->currentText();
+}
+
 void OpenLocationDialog::browse()
 {
     QString dir = QFileDialog::getExistingDirectory(
