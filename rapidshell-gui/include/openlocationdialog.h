@@ -22,9 +22,28 @@
  * ====================================================================
  */
 
-#include "svnmodel.hpp"
+#ifndef OPENLOCATIONDIALOG_H
+#define OPENLOCATIONDIALOG_H
 
-SvnModel::SvnModel(QObject *parent) :
-    QAbstractItemModel(parent)
-{
+#include <QDialog>
+
+namespace Ui {
+class OpenLocationDialog;
 }
+
+class OpenLocationDialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit OpenLocationDialog(QWidget *parent = 0);
+    ~OpenLocationDialog();
+
+private slots:
+    void browse();
+
+private:
+    Ui::OpenLocationDialog *ui;
+};
+
+#endif // OPENLOCATIONDIALOG_H

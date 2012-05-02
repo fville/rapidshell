@@ -27,6 +27,8 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="actionOpenLocation"/>
+    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuBookmarks">
@@ -75,6 +77,14 @@
   <action name="actionPreferences">
    <property name="text">
     <string>&amp;Preferences...</string>
+   </property>
+  </action>
+  <action name="actionOpenLocation">
+   <property name="text">
+    <string>&amp;Open Location...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

@@ -1,6 +1,6 @@
 /*
  * ====================================================================
- * Copyright (c) 2010 Alexander Mueller.  All rights reserved.
+ * Copyright (c) 2012 Alexander Mueller.  All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,12 +18,14 @@
  *
  * This software consists of voluntary contributions made by many
  * individuals.  For exact contribution history, see the revision
- * history and logs, available at http://rapidgit.org/.
+ * history and logs, available at http://rapidshell.org/.
  * ====================================================================
  */
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
+#include "openlocationdialog.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -33,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->actionQuit, SIGNAL(triggered()), SLOT(close()));
+    connect(ui->actionOpenLocation, SIGNAL(triggered()), SLOT(openLocation()));
 }
 
 MainWindow::~MainWindow()
@@ -42,4 +45,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::about()
 {
+}
+
+void MainWindow::openLocation()
+{
+    OpenLocationDialog dlg(this);
+
+    if (dlg.exec() != QDialog::Accepted)
+        return;
+
 }

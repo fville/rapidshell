@@ -21,21 +21,37 @@
  * history and logs, available at http://rapidshell.org/.
  * ====================================================================
  */
-#ifndef SVNMODEL_H
-#define SVNMODEL_H
 
-#include <QAbstractItemModel>
+#include "openlocationdialog.h"
+#include "ui_openlocationdialog.h"
 
-class SvnModel : public QAbstractItemModel
+#include <QFileDialog>
+
+
+OpenLocationDialog::OpenLocationDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::OpenLocationDialog)
 {
-    Q_OBJECT
-public:
-    explicit SvnModel(QObject *parent = 0);
+    ui->setupUi(this);
+    ui->comboLocation->setEditable(true);
 
-signals:
+    connect(ui->buttonCancel, SIGNAL(pressed()), SLOT(reject()));
+    connect(ui->buttonOpen, SIGNAL(pressed()), SLOT(accept()));
+    connect(ui->buttonBrowse, SIGNAL(pressed()), SLOT(browse()));
+}
 
-public slots:
+OpenLocationDialog::~OpenLocationDialog()
+{
+    delete ui;
+}
 
-};
+void OpenLocationDialog::browse()
+{
+    QString dir = QFileDialog::getExistingDirectory(
+                this, tr("Select Directory"), ui->comboLocation->currentText());
 
-#endif // SVNMODEL_H
+    if (dir.isEmpty())
+        return;
+
+    ui->comboLocation->setEditText(dir);
+}

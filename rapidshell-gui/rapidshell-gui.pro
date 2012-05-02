@@ -22,10 +22,13 @@ UI_DIR = tmp
 RCC_DIR = tmp
 
 HEADERS += \
-    include/mainwindow.h
+    include/mainwindow.h \
+    include/openlocationdialog.h
 
 SOURCES += \
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    src/openlocationdialog.cpp
 
 FORMS += \
-    ui/mainwindow.ui
+    ui/mainwindow.ui \
+    ui/openlocationdialog.ui

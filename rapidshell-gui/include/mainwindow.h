@@ -1,6 +1,6 @@
 /*
  * ====================================================================
- * Copyright (c) 2010 Alexander Mueller.  All rights reserved.
+ * Copyright (c) 2012 Alexander Mueller.  All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
  *
  * This software consists of voluntary contributions made by many
  * individuals.  For exact contribution history, see the revision
- * history and logs, available at http://rapidgit.org/.
+ * history and logs, available at http://rapidshell.org/.
  * ====================================================================
  */
 
@@ -41,6 +41,7 @@ public:
 
 private slots:
     void about();
+    void openLocation();
 
 private:
     Ui::MainWindow *ui;
