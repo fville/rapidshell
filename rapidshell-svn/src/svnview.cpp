@@ -50,6 +50,7 @@ SvnView::~SvnView()
 void SvnView::setRoot(const QString &location)
 {
     m->model.setRoot(location);
+    m->model.refresh();
 }
 
 const QString &SvnView::root() const

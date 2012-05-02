@@ -24,6 +24,29 @@
 
 #include "svninfoxmlhandler.h"
 
+#include <QDebug>
+
+
 SvnInfoXmlHandler::SvnInfoXmlHandler()
 {
+}
+
+bool SvnInfoXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &atts)
+{
+    Q_UNUSED(namespaceURI);
+    Q_UNUSED(localName);
+
+    qDebug() << "startElement" << qName;
+
+    return true;
+}
+
+bool SvnInfoXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
+{
+    Q_UNUSED(namespaceURI);
+    Q_UNUSED(localName);
+
+    qDebug() << "endElement" << qName;
+
+    return true;
 }

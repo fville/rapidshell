@@ -21,12 +21,31 @@
  * history and logs, available at http://rapidshell.org/.
  * ====================================================================
  */
-
 #include "svnwcmodel.h"
+
+#include "svninfoxmlhandler.h"
+
+#include <QProcess>
+#include <QProcessEnvironment>
+#include <QXmlSimpleReader>
+#include <QXmlInputSource>
+
 
 struct SvnWcModel::Data
 {
     QString root;
+    QXmlSimpleReader *xmlReader;
+    QXmlInputSource *xmlInputSource;
+    QProcess *svnProcess;
+    SvnInfoXmlHandler *handler;
+
+    Data() :
+        xmlReader(0),
+        xmlInputSource(0),
+        svnProcess(0),
+        handler(0)
+    {
+    }
 };
 
 SvnWcModel::SvnWcModel(QObject *parent) :
@@ -76,4 +95,32 @@ QVariant SvnWcModel::data(const QModelIndex &index, int role) const
 
 void SvnWcModel::refresh()
 {
+    Q_ASSERT(0 == m->svnProcess);
+    Q_ASSERT(0 == m->xmlInputSource);
+
+    m->handler = new SvnInfoXmlHandler();
+
+    m->xmlReader = new QXmlSimpleReader();
+    m->xmlReader->setContentHandler(m->handler);
+
+    QStringList args;
+    args << "info" << "--recursive" << "--xml" << m->root;
+
+    QProcessEnvironment processEnvironment = QProcessEnvironment::systemEnvironment();
+    processEnvironment.insert("LANG", "C");
+
+    m->svnProcess = new QProcess(this);
+    m->svnProcess->setProcessEnvironment(processEnvironment);
+    m->svnProcess->setReadChannel(QProcess::StandardOutput);
+
+    m->xmlInputSource = new QXmlInputSource(m->svnProcess);
+    m->xmlReader->parse(m->xmlInputSource, true);
+
+    m->svnProcess->start("svn", args, QProcess::ReadOnly);
+    m->svnProcess->waitForFinished();
+}
+
+void SvnWcModel::readyReadStandardOutput()
+{
+    //m->xmlInputSource.setData(m->svnProcess->readAllStandardOutput());
 }

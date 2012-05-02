@@ -49,6 +49,9 @@ signals:
 public slots:
     void refresh();
 
+private slots:
+    void readyReadStandardOutput();
+
 private:
     struct Data;
     Data *m;
