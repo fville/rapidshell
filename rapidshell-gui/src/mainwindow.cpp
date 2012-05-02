@@ -26,6 +26,7 @@
 #include "ui_mainwindow.h"
 
 #include "openlocationdialog.h"
+#include "svnview.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -54,4 +55,9 @@ void MainWindow::openLocation()
     if (dlg.exec() != QDialog::Accepted)
         return;
 
+    // TODO detect GIT/SVN/...
+    SvnView *view = new SvnView(this);
+    view->setRoot(dlg.location());
+
+    setCentralWidget(view);
 }
