@@ -1,0 +1,6 @@
+*.prl
+*.pro.user
+release
+debug
+tmp
+Makefile*
