@@ -8,18 +8,22 @@ CONFIG(debug, debug|release) {
     OBJECTS_DIR = debug
     DESTDIR = debug
     DEFINES += DEBUG
-    #PRE_TARGETDEPS += ../Simulation/debug/libSimulation.a
+    LIBS += -L../rapidshell-svn/debug
+    PRE_TARGETDEPS += ../rapidshell-svn/debug/librapidshell-svn.a
 } else {
     OBJECTS_DIR = release
     DESTDIR = release
     DEFINES += RELEASE
-    #PRE_TARGETDEPS += ../Simulation/release/libSimulation.a
+    LIBS += -L../rapidshell-svn/release
+    PRE_TARGETDEPS += ../rapidshell-svn/release/librapidshell-svn.a
 }
 
-INCLUDEPATH += src include
+INCLUDEPATH += src include ../rapidshell-svn/include
 MOC_DIR = tmp
 UI_DIR = tmp
 RCC_DIR = tmp
+
+LIBS += -lrapidshell-svn
 
 HEADERS += \
     include/mainwindow.h \
