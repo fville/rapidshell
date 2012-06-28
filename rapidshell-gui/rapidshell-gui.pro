@@ -9,13 +9,15 @@ CONFIG(debug, debug|release) {
     DESTDIR = debug
     DEFINES += DEBUG
     LIBS += -L../rapidshell-svn/debug
-    PRE_TARGETDEPS += ../rapidshell-svn/debug/librapidshell-svn.a
+    unix:PRE_TARGETDEPS += ../rapidshell-svn/debug/librapidshell-svn.a
+    win32:PRE_TARGETDEPS += ../rapidshell-svn/debug/rapidshell-svn.lib
 } else {
     OBJECTS_DIR = release
     DESTDIR = release
     DEFINES += RELEASE
     LIBS += -L../rapidshell-svn/release
-    PRE_TARGETDEPS += ../rapidshell-svn/release/librapidshell-svn.a
+    unix:PRE_TARGETDEPS += ../rapidshell-svn/release/librapidshell-svn.a
+    win32:PRE_TARGETDEPS += ../rapidshell-svn/release/rapidshell-svn.lib
 }
 
 INCLUDEPATH += src include ../rapidshell-svn/include

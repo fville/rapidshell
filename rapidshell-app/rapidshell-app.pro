@@ -8,17 +8,21 @@ CONFIG(debug, debug|release) {
     DESTDIR = debug
     DEFINES += DEBUG
     LIBS += -L../rapidshell-svn/debug
-    PRE_TARGETDEPS += ../rapidshell-svn/debug/librapidshell-svn.a
+    unix:PRE_TARGETDEPS += ../rapidshell-svn/debug/librapidshell-svn.a
+    win32:PRE_TARGETDEPS += ../rapidshell-svn/debug/rapidshell-svn.lib
     LIBS += -L../rapidshell-gui/debug
-    PRE_TARGETDEPS += ../rapidshell-gui/debug/librapidshell-gui.a
+    unix:PRE_TARGETDEPS += ../rapidshell-gui/debug/librapidshell-gui.a
+    win32:PRE_TARGETDEPS += ../rapidshell-gui/debug/rapidshell-gui.lib
 } else {
     OBJECTS_DIR = release
     DESTDIR = release
     DEFINES += RELEASE
     LIBS += -L../rapidshell-svn/release
-    PRE_TARGETDEPS += ../rapidshell-svn/release/librapidshell-svn.a
+    unix:PRE_TARGETDEPS += ../rapidshell-svn/release/librapidshell-svn.a
+    win32:PRE_TARGETDEPS += ../rapidshell-svn/release/rapidshell-svn.lib
     LIBS += -L../rapidshell-gui/release
-    PRE_TARGETDEPS += ../rapidshell-gui/release/librapidshell-gui.a
+    unix:PRE_TARGETDEPS += ../rapidshell-gui/release/librapidshell-gui.a
+    win32:PRE_TARGETDEPS += ../rapidshell-gui/release/rapidshell-gui.lib
 }
 
 INCLUDEPATH += src include ../rapidshell-svn/include ../rapidshell-gui/include
